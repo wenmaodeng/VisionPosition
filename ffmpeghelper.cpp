@@ -68,12 +68,10 @@ void FfmpegHelper::run()
 				Mat kernel = getStructuringElement(1, Size(3, 3));
 				//膨胀
 				dilate(_canny, _canny, kernel);
-				//
+				//轮廓提取
 				vector<vector<Point>> contours;
 				vector<Vec4i> hierarchy;
 				findContours(_canny, contours, hierarchy, 0, 2, Point());
-				//绘制所有边缘点
-				//drawContours(temp, contours, -1, Scalar(0, 0, 255));
 				if (contours.size() == 0)
 				{
 					runLog(QString("未找到边缘点"));
